@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response.Status;
 import com.google.gson.*;
 
 public class database {
-	static String TBMapPath = "/home/payal/GUI/workspace/SR_Server5/src/TestbedMap.json";
+	static String TBMapPath = "/full/path/to/TestbedMap.json";
 	 public static Response getTBMap(){
 		 JsonObject jsonObject = new JsonObject();
 			try {
