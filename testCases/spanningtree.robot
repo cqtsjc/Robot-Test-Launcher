@@ -39,10 +39,10 @@ Root Port Selection Process
      Sleep    2
     
 Port States
-     Test STP.op.4.1 – The Disabled Port State
-     Test STP.op.4.2 – The Blocking Port State
-     Test STP.op.4.3 – The Listening Port State
-     Test STP.op.4.4 – The Learning Port State
-     Test STP.op.4.5 – The Forwarding Port State
+     Log    Test STP.op.4.1 – The Disabled Port State
+     Log    Test STP.op.4.2 – The Blocking Port State
+     Log    Test STP.op.4.3 – The Listening Port State
+     Log    Test STP.op.4.4 – The Learning Port State
+     Log    Test STP.op.4.5 – The Forwarding Port State
      Sleep    2
 
