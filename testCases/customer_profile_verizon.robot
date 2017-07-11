@@ -22,5 +22,4 @@ CustomerProfile Test4
 
 CustomerProfile Test5
     Log    CustomerProfile Test5
-
-
+    Sleep    10
