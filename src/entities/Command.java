@@ -13,11 +13,11 @@ public class Command {
     { 
 		System.out.println("In Command: Run()");
 		JsonObject jsonObject = new JsonObject();
-		String basePath = "/home/payal/SnaproutePhase2/TESTS/";
+		String basePath = "path/to/github/cloned/repository/";
 		String test = "FAIL";
         try 
         { 
-        	String cmd = "sh "+basePath+"run/test.sh "+basePath+"testbed/"+payload.Testbed+".json"+" "+basePath+"testCases/ProtocolSanity/"+payload.Protocol+".robot";
+        	String cmd = "sh "+basePath+"run/test.sh "+basePath+"testbed/"+payload.Testbed+".json"+" "+basePath+"testCases/"+payload.Protocol+".robot";
         	System.out.println(cmd);
             Process p=Runtime.getRuntime().exec(cmd); 
             p.waitFor(); 

@@ -23,6 +23,28 @@ NOS.controller('NOSController', function($scope,$http)
     $scope.TestEnd = "";
     $scope.baseURL = "http://localhost:8080/SR_Server5/rest/";
     
+    
+//Http GET function to update parameters
+    $scope.HttpGet = function(){
+   	$http.get($scope.baseURL + "getTBMap").then(function successCallback(response)
+	   {
+               $scope.TBstatus = response.data.TestBed[$scope.dataTB.selectedTB]["Status"];
+  	           $scope.TestStart = response.data.TestBed[$scope.dataTB.selectedTB]["StartTime"];
+               $scope.TestEnd = response.data.TestBed[$scope.dataTB.selectedTB]["EndTime"];
+               $scope.Comnts = response.data.TestBed[$scope.dataTB.selectedTB]["Comments"];
+               $scope.TBuser = response.data.TestBed[$scope.dataTB.selectedTB]["User"];
+               $scope.errorPoint = "" ;
+	    	       $scope.resdata	= "";
+	    	       $scope.statusval = Response.status;
+	    	       $scope.statustext = "";
+	    	       $scope.headers = Response.headers();
+  	 		   },
+  	 		   function errorCallback(response)
+  	 			{
+  			    	 $scope.requestStatus="Failure";
+  	 			});
+    }
+    
 // HTTP GET request to get the list of available protocol suites
     $http.get($scope.baseURL + "getTBMap")
       .then(function successCallback(response)
@@ -68,6 +90,11 @@ NOS.controller('NOSController', function($scope,$http)
 		   {
 			$scope.TBList= response.data.TestBedMap[$scope.dataPT.selectedPT];
 			$scope.TestExecutionTime = response.data.SuiteExecutionTime[$scope.dataPT.selectedPT]
+			$scope.str = $scope.TestExecutionTime;
+			$scope.re = /(\d+)(.*)/g;
+			$scope.regmatch = $scope.re.exec($scope.str);
+			$scope.time = $scope.regmatch[1];
+			$scope.timeunit = $scope.regmatch[2];
 			$scope.errorPoint = "" ;
 	        $scope.resdata	= "";
 	        $scope.statusval = Response.status;
@@ -140,6 +167,7 @@ NOS.controller('NOSController', function($scope,$http)
                 
 // Function to reserve testbed
         $scope.reserveTB = function(){
+        $scope.HttpGet();
         var chosenTB = {
         			TestBed: $scope.dataTB.selectedTB,
 	    			state  : "Reserved",
@@ -149,13 +177,7 @@ NOS.controller('NOSController', function($scope,$http)
 	   				Comments : $scope.comments
 	   				};
         if ($scope.TBstatus === "Reserved"){
-		   	$scope.requestStatus = "Failure";
-		   	$scope.errorPoint = "While reserving";
-		   	$scope.resdata	= "Action Forbidden";
-		   	$scope.statusval = "";
-		   	$scope.statustext = "";
-   		   	$scope.responsetext = "You cannot reserve a testbed which is already Reserved";
-		   	$scope.headers = "";
+        	confirm("TestBed already Reserved");
         }
         else{
         	$http.post($scope.baseURL + 'setTBStatus', chosenTB, 
@@ -165,28 +187,13 @@ NOS.controller('NOSController', function($scope,$http)
     		    	'Access-Control-Allow-Methods' : 'GET, POST, OPTIONS, PUT, DELETE'}})
     	    .then( function successCallback(Response)
     	    {
-    	  	if (Response.data){
+    	    	if (Response.data){
     	    		$scope.requestStatus = Response.data;
-    		    	};
-    	   	$http.get($scope.baseURL + "getTBMap").then(function successCallback(response)
-    		   {
-    	               $scope.TBstatus = response.data.TestBed[$scope.dataTB.selectedTB]["Status"];
-    	  	           $scope.TestStart = response.data.TestBed[$scope.dataTB.selectedTB]["StartTime"];
-    	               $scope.TestEnd = response.data.TestBed[$scope.dataTB.selectedTB]["EndTime"];
-    	               $scope.Comnts = response.data.TestBed[$scope.dataTB.selectedTB]["Comments"];
-    	               $scope.TBuser = response.data.TestBed[$scope.dataTB.selectedTB]["User"];
-    	               $scope.errorPoint = "" ;
-  		    	       $scope.resdata	= "";
-  		    	       $scope.statusval = Response.status;
-  		    	       $scope.statustext = "";
-  		    	       $scope.headers = Response.headers();
-    	  	 		   },
-    	  	 		   function errorCallback(response)
-    	  	 			{
-    	  			    	 $scope.requestStatus="Failure";
-    	  	 			});
-    		    },
-    		    function errorCallback(Response)
+    	    	};
+    	    	$scope.HttpGet();
+    	    	
+    	    },
+    	    function errorCallback(Response)
     		    {
     		    	$scope.requestStatus = "Failure";
     		    	$scope.errorPoint = "[In reserve function]Error occured during http post:";
@@ -200,7 +207,11 @@ NOS.controller('NOSController', function($scope,$http)
         
 // Function to release testbed
         $scope.releaseTB = function(){
-        	var chosenTB = {
+        	$scope.HttpGet();
+        	if ($scope.TBstatus == "Reserved"){
+        		var select = confirm("Confirm releasing of Reserved Testbed");
+        	if (select == true){
+        	        var chosenTB = {
         			TestBed: $scope.dataTB.selectedTB,
 	    			state  : "Available",
 	   				TBUsername : $scope.myName,
@@ -218,23 +229,7 @@ NOS.controller('NOSController', function($scope,$http)
 		         if (Response.data){
 		    		$scope.requestStatus = Response.data;
 		    	};
-	        	$http.get($scope.baseURL + "getTBMap").then(function successCallback(response)
-	 		   {
-	                $scope.TBstatus = response.data.TestBed[$scope.dataTB.selectedTB]["Status"];
- 	                $scope.TestStart = response.data.TestBed[$scope.dataTB.selectedTB]["StartTime"];
-                	$scope.TestEnd = response.data.TestBed[$scope.dataTB.selectedTB]["EndTime"];
-                 	$scope.Comnts = response.data.TestBed[$scope.dataTB.selectedTB]["Comments"];
-            	    $scope.TBuser = response.data.TestBed[$scope.dataTB.selectedTB]["User"];
-        	        $scope.errorPoint = "" ;
-      		    	$scope.resdata	= "";
-      		    	$scope.statusval = Response.status;
-      		    	$scope.statustext = "";
-      		    	$scope.headers = Response.headers();
-        	        
-	 		   },function errorCallback(response)
-	 			{
-			    	 $scope.requestStatus="Failure";
-	 			});
+	        	$scope.HttpGet();
 		    },
 		    function errorCallback(Response)
 		    {
@@ -245,26 +240,36 @@ NOS.controller('NOSController', function($scope,$http)
 		    	$scope.statustext = Response.statusText;
 		    	$scope.headers = Response.headers();
 		    });
+        	};
+        	};
         };
 
 // HTTP request to execute the command
      	$scope.launch = function()
      	    {
+     		$scope.HttpGet();
      		if ($scope.TBstatus === "Available"){
-
-		    	$scope.requestStatus = "Failure";
-		    	$scope.errorPoint = "While Launching";
-		    	$scope.resdata	= "Action Forbidden";
-		    	$scope.statusval = "";
-		    	$scope.statustext = "";
-   		    	$scope.responsetext = "Please reserve the testbed before launching the script";
-		    	$scope.headers = "";
+     			confirm("Please reserve the testbed before launching the script");
      		}
-     	   else{
+     	   else {
 		   var dt1  = new Date();
 		   $scope.CurrentTime  = dt1.getHours() + ":" + dt1.getMinutes() + ":" + dt1.getSeconds();
 		   var dt2 = new Date();
-		   dt2.setSeconds(dt1.getSeconds() + $scope.TestExecutionTime);
+		   if ($scope.timeunit == "sec"){ 
+		       dt2.setSeconds(dt1.getSeconds() + $scope.time);
+		   }
+		   else if ($scope.timeunit == "min"){
+			   $scope.timeinsec = $scope.time * 60; 
+			   dt2.setSeconds(dt1.getSeconds() + $scope.timeinsec);   
+		   }
+		   else if ($scope.timeunit == "hrs"){
+			   $scope.timeinsec = $scope.time * 60 *60; 
+			   dt2.setSeconds(dt1.getSeconds() + $scope.timeinsec);   
+		   
+			}
+		   else { 
+			   confirm("Please enter the proper time unit in testbedMap File");
+		   }
 		   $scope.Expected_Test_Exec_Completion = dt2.getHours() + ":" + dt2.getMinutes() + ":" + dt2.getSeconds();
       		  var chosenTB = {
             			TestBed: $scope.dataTB.selectedTB,
@@ -330,6 +335,9 @@ NOS.controller('NOSController', function($scope,$http)
       		    })
       		    }
      	    };
+     	    
+     	    
+     	    
 // Function to set color based on availability of testbed
              $scope.getTrColor = function(TBStatus){
                  switch(TBStatus){

@@ -1,0 +1,42 @@
+{
+    "Device": {
+        "DUT1": {
+            "hostname"  : "DUT1",
+	    "username"  : "admin",
+	    "password"  : "root123",
+	    "mgmtIP"    : "172.17.0.2",
+            "console"   : "192.100.0.20 -p 3021",
+            "platform"  : "Cisco",
+            "ASIC"      : "Broadcom",
+            "processor" : "x86",
+            "ports"   : {
+                         "DUT1_P1" : "fpPort1",
+			 "DUT1_P2" : "fpPort2",
+			 "DUT1_P3" : "fpPort3",
+			 "DUT1_P4" : "fpPort4",
+			 "DUT1_P5" : "fpPort5"
+	                }
+        	     },
+        "DUT2": {
+            "hostname"  : "DUT2",
+	    "username"  : "admin",
+	    "password"  : "root123",
+	    "mgmtIP"    : "172.17.0.3",
+            "console"   : "192.100.0.20 -p 3022",
+            "platform"  : "cisco",
+            "ASIC"      : "Broadcom",
+            "processor" : "x86",
+            "ports"   : {
+                         "DUT2_P1" : "fpPort3", 
+                         "DUT2_P2": "fpPort7"
+			}
+        	}
+                  },
+      "Links": {
+        
+	"DUT1_DUT2_1": {
+			"DUT1":{"Intf":"DUT1_P1", "speed":"100G"},
+			"DUT2":{"Intf":"DUT2_P1", "speed":"100G"}
+        		}
+                }
+}
