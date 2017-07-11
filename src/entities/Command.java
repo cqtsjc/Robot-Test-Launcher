@@ -13,7 +13,7 @@ public class Command {
     { 
 		System.out.println("In Command: Run()");
 		JsonObject jsonObject = new JsonObject();
-		String basePath = "/home/payal/SnaproutePhase2/TESTS/";
+		String basePath = "/path/to/TESTS/";
 		String test = "FAIL";
         try 
         { 
