@@ -1,0 +1,21 @@
+{
+    "Device": {
+        "DUT1": {
+            "hostname"  : "DUT1",
+	    "username"  : "admin",
+	    "password"  : "root123",
+	    "mgmtIP"    : "172.17.0.2",
+            "console"   : "192.100.0.20 -p 3021",
+            "platform"  : "Cisco",
+            "ASIC"      : "Broadcom",
+            "processor" : "x86",
+            "ports"   : {
+                         "DUT1_P1" : "fpPort1",
+			 "DUT1_P2" : "fpPort2",
+			 "DUT1_P3" : "fpPort3",
+			 "DUT1_P4" : "fpPort4",
+			 "DUT1_P5" : "fpPort5"
+	                }
+        	     }
+                  } 
+}
