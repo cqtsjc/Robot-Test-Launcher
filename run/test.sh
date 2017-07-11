@@ -6,5 +6,5 @@ basePath=$(dirname "$2")
 export TESTBED=$1
 fname=$(basename $2)
 test=$(echo $fname | cut -f 1 -d '.')
-robot --timestampoutputs --log ${test}_Log.html --report ${test}_Report.html --loglevel DEBUG --output ${test}_Output.xml --outputdir ${basePath}/s../Results  $2
+robot --timestampoutputs --log ${test}_Log.html --report ${test}_Report.html --loglevel DEBUG --output ${test}_Output.xml --outputdir ${basePath}/../Results  $2
 
