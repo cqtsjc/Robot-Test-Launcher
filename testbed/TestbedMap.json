@@ -48,7 +48,7 @@
          "100g_only_testbed_2links_2nodes",
          "platform_focus_testbed"
       ],
-      "spanningtree_functionality":[
+      "spanningtree":[
          "flexswitch_docker_testbed",
          "ixia_emulation_testbed",
          "100g_only_testbed_2links_2nodes",
