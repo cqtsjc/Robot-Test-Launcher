@@ -7,22 +7,32 @@ Metadata 		Version          	       1.0
 ...	                Executed At  	       ${HOST}
 ...		        Test Framework           Robot Framework Python
 *** Test Cases ***
-
-BGP Tests
+BGP Conformance Tests
     Log    Performing Conformance Tests
+BGP Interoperability Tests    
     Log    Performing Interoperability Tests
+BGP Network feature Tests
     Log    Performing Network feature Tests
+BGP Scalibility Tests     
     Log    Performing Scalabilty Tests
+    Sleep    10
 
-OSPF Tests
+OSPF Conformance Tests
     Log    Performing Conformance Tests
+OSPF Interoperability Tests    
     Log    Performing Interoperability Tests
+OSPF Network feature Tests
     Log    Performing Network feature Tests
+OSPF Scalibility Tests     
     Log    Performing Scalabilty Tests
+    Sleep    10
 
-EIGRP Tests
+EIGRP Conformance Tests
     Log    Performing Conformance Tests
+EIGRP Interoperability Tests    
     Log    Performing Interoperability Tests
+EIGRP Network feature Tests
     Log    Performing Network feature Tests
+EIGRP Scalibility Tests     
     Log    Performing Scalabilty Tests
-    Sleep     10
+    Sleep    10

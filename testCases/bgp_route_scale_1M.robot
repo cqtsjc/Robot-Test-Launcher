@@ -17,7 +17,7 @@ BGP Featute Tests
      Log     ROUTE MAPS 	
      Log     BGP COMMUNITIES 	
      Log     MISCELLANEOUS FEATURES
-     Sleep 5 
+     Sleep   5 
 
 BGP Performance Tests	
      Log     SIMPLE PEERING CONVERGENCE SPEED 

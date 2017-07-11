@@ -10,11 +10,4 @@ Metadata 		Version          	       1.0
 
 Tests
      Log    Telemetry cisco juniper tests 
-     Log    Testcase1
-     Log    Testcase2
-     Log    Testcase3
-     Log    Testcase4
-     Log    Testcase5
-     Log    Testcase6
-     Log    Testcase7
-     Log    Testcase8
+     

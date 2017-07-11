@@ -13,14 +13,20 @@ IP_address configuration
     Sleep    2
 
 Protocol configuration
+    Log    Protocol Configuration
+RIP
     Log    Configuring RIP
+OSPF
     Log    Configuring OSPF
+IBGP
     Log    Configuring IBGP
+EBGP
     Log    Configuring EBGP
+EIGRP
     Log    Configuring EIGRP
     
 Protocol Testing 
-    Log    Testing Node reachabilityation
+    Log    Testing Node reachability
     Sleep    20
 
 
