@@ -10,8 +10,8 @@
             "ASIC"      : "Broadcom",
             "processor" : "x86",
             "ports"   : {
-                         "DUT1_P1" : "fpPort1",
-			 "DUT1_P2" : "fpPort2"
+                         "DUT1_P1" : "intf1",
+			 "DUT1_P2" : "intf2"
 	                }
         	}, 
         "DUT2": {
@@ -24,8 +24,8 @@
             "ASIC"      : "Broadcom",
             "processor" : "x86",
             "ports"   : {
-                         "DUT2_P1" : "fpPort3", 
-                         "DUT2_P2": "fpPort7"
+                         "DUT2_P1" : "intf3", 
+                         "DUT2_P2": "intf7"
 			}
         	},
 	 "DUT3": {
@@ -38,8 +38,8 @@
             "ASIC"      : "Broadcom",
             "processor" : "x86",
             "ports"   : {
-                         "DUT3_P1" : "fpPort4", 
-                         "DUT3_P2": "fpPort8"
+                         "DUT3_P1" : "intf4", 
+                         "DUT3_P2": "intf8"
                          }
         	},
 	"DUT4": {
@@ -52,8 +52,8 @@
             "ASIC"      : "Broadcom",
             "processor" : "ARM",
             "ports"   : {
-                         "DUT4_P1" : "fpPort5",
-			 "DUT4_P2" : "fpPort6"
+                         "DUT4_P1" : "intf5",
+			 "DUT4_P2" : "intf6"
                          }
         	}
               },
